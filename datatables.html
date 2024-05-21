@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- DataTables CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+    />
+    <!-- DataTables Responsive CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css"
+    />
+
+    <style>
+      table tr th{
+        background-color: rgb(255, 253, 151);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <table id="example" class="display nowrap" style="width: 100%">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Reg No</th>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Company ID</th>
+            <th>Company Name</th>
+            <th>Contract</th>
+            <th>MCU ID</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Contoh data -->
+          <tr>
+            <td>1</td>
+            <td>R001</td>
+            <td>P123</td>
+            <td>John Doe</td>
+            <td>C456</td>
+            <td>Acme Corp</td>
+            <td>Contract1</td>
+            <td>MCU789</td>
+            <td><button class="btn btn-primary">Action</button></td>
+          </tr>
+          <!-- Tambahkan lebih banyak baris data di sini -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Responsive JS -->
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#example").DataTable({
+          responsive: {
+            details: {
+              type: "column",
+              target: "tr",
+            },
+          },
+          columnDefs: [
+            { responsivePriority: 1, targets: 0 }, // Prioritas kolom "No"
+            { responsivePriority: 2, targets: 1 }, // Prioritas kolom "Reg No"
+            { responsivePriority: 3, targets: 2 }, // Prioritas kolom "Patient ID"
+            { responsivePriority: 4, targets: -1 }, // Prioritas kolom terakhir (Action)
+          ],
+        });
+      });
+    </script>
+  </body>
+</html>

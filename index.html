@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Double Click to Input</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+    #output {
+        cursor: pointer;
+    }
+    #inputText {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<p>Double click on any text in the table to input:</p>
+
+<table>
+    <tr>
+        <th>Header 1</th>
+        <th>Header 2</th>
+    </tr>
+    <tr>
+        <td id="output1" ondblclick="copyText('output1')">Text 1</td>
+        <td id="output2" ondblclick="copyText('output2')">Text 2</td>
+    </tr>
+</table>
+
+<input type="text" id="inputText">
+
+<script>
+function copyText(outputId) {
+    var outputElement = document.getElementById(outputId);
+    var text = outputElement.textContent || outputElement.innerText;
+    var inputElement = document.getElementById("inputText");
+    inputElement.style.display = "inline-block";
+    inputElement.value = text;
+    inputElement.focus();
+    
+    // Memperbarui output element setelah input blur
+    inputElement.onblur = function() {
+        outputElement.textContent = inputElement.value;
+        inputElement.style.display = "none";
+    };
+}
+</script>
+
+</body>
+</html>
